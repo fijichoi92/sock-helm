@@ -19,6 +19,8 @@ spec:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
       {{- end }}
     spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: pool-sockshop
       containers:
       - name: orders
         image: {{if .Values.global.registry}}{{ .Values.global.registry }}/{{end}}{{ .Values.orders.image.repo }}:{{ .Values.orders.image.tag }}

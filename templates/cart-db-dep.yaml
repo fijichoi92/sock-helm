@@ -7,8 +7,6 @@ metadata:
     name: carts-db
 spec:
   replicas: 1
-  nodeSelector:
-    cloud.google.com/gke-nodepool: pool-sockshop
   selector:
     matchLabels:
       name: carts-db
@@ -17,6 +15,8 @@ spec:
       labels:
         name: carts-db
     spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: pool-sockshop
       containers:
       - name: carts-db
         image: {{if .Values.global.registry}}{{ .Values.global.registry }}/{{end}}{{ .Values.cartsdb.image.repo }}:{{ .Values.cartsdb.image.tag }}

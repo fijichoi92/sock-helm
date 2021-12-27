@@ -7,8 +7,6 @@ metadata:
     name: shipping
 spec:
   replicas: 1
-  nodeSelector:
-    cloud.google.com/gke-nodepool: pool-sockshop
   selector:
     matchLabels:
       name: shipping
@@ -21,6 +19,8 @@ spec:
         sidecar.istio.io/rewriteAppHTTPProbers: "true"
       {{- end }}
     spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: pool-sockshop
       containers:
       - name: shipping
         image: {{if .Values.global.registry}}{{ .Values.global.registry }}/{{end}}{{ .Values.shipping.image.repo }}:{{ .Values.shipping.image.tag }}

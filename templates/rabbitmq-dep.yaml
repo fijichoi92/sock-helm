@@ -7,8 +7,6 @@ metadata:
     name: rabbitmq
 spec:
   replicas: 1
-  nodeSelector:
-    cloud.google.com/gke-nodepool: pool-sockshop
   selector:
     matchLabels:
       name: rabbitmq
@@ -17,6 +15,8 @@ spec:
       labels:
         name: rabbitmq
     spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: pool-sockshop
       containers:
       - name: rabbitmq
         image: {{if .Values.global.registry}}{{ .Values.global.registry }}/{{end}}{{ .Values.rabbitmq.image.repo }}:{{ .Values.rabbitmq.image.tag }}

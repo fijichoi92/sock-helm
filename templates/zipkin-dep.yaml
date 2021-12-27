@@ -7,8 +7,6 @@ metadata:
     name: zipkin
 spec:
   replicas: 1
-  nodeSelector:
-    cloud.google.com/gke-nodepool: pool-sockshop
   selector:
     matchLabels:
       name: zipkin
@@ -17,6 +15,8 @@ spec:
       labels:
         name: zipkin
     spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: pool-sockshop
       containers:
       - name: zipkin
         image: {{if .Values.global.registry}}{{ .Values.global.registry }}/{{end}}{{ .Values.zipkin.image.repo }}:{{ .Values.zipkin.image.tag }}

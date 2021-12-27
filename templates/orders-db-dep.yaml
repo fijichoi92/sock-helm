@@ -7,8 +7,6 @@ metadata:
     name: orders-db
 spec:
   replicas: 1
-  nodeSelector:
-    cloud.google.com/gke-nodepool: pool-sockshop
   selector:
     matchLabels:
       name: orders-db
@@ -17,6 +15,8 @@ spec:
       labels:
         name: orders-db
     spec:
+      nodeSelector:
+        cloud.google.com/gke-nodepool: pool-sockshop
       containers:
       - name: orders-db
         image: {{if .Values.global.registry}}{{ .Values.global.registry }}/{{end}}{{ .Values.ordersdb.image.repo }}:{{ .Values.ordersdb.image.tag }}
