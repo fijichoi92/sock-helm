@@ -7,6 +7,8 @@ metadata:
     name: zipkin-cron
 spec:
   replicas: 1
+  nodeSelector:
+    cloud.google.com/gke-nodepool: pool-sockshop
   selector:
     matchLabels:
       name: zipkin-cron

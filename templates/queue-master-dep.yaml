@@ -7,6 +7,8 @@ metadata:
     name: queue-master
 spec:
   replicas: 1
+  nodeSelector:
+    cloud.google.com/gke-nodepool: pool-sockshop
   selector:
     matchLabels:
       name: queue-master

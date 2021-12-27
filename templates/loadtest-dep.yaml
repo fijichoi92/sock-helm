@@ -7,6 +7,8 @@ metadata:
     name: load-test
 spec:
   replicas: {{ .Values.loadtest.replicas }}
+  nodeSelector:
+    cloud.google.com/gke-nodepool: pool-sockshop
   selector:
     matchLabels:
       name: load-test
