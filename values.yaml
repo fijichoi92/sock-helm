@@ -47,7 +47,7 @@ carts:
 catalogue:
     image:
         repo: gcr.io/strong-market-328005/catalogue
-        tag: latest
+        tag: nodb
     containerPort: 8080
     resources:
         limits:
