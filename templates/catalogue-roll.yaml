@@ -1,15 +1,20 @@
 ---
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
   name: catalogue
   labels:
     name: catalogue
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       name: catalogue
+  strategy:
+    blueGreen:
+      activeService: catalogue2
+      previewService: catalogue
+      autoPromotionEnabled: false
   template:
     metadata:
       labels:
